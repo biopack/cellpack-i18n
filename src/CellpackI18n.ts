@@ -41,6 +41,7 @@ export default class CellpackI18n extends Cellpack {
 
     request(connection: Connection){
         if(connection.request.attributes.has("locale")) this.i18n.setLocale(connection.request.attributes.get("locale"))
+        if(connection.environment.has("cellpack.i18n.locale")) this.i18n.setLocale(connection.environment.get("cellpack.i18n.locale"))
         if(this.environment.get('debug')) this.transmitter.emit("log.cellpack.i18n",`Set Locale: ${this.i18n.getLocale()}`)
         return Promise.resolve(true)
     }
