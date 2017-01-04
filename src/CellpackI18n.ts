@@ -29,7 +29,14 @@ export default class CellpackI18n extends Cellpack {
 
     translations(text: string, subs?: any){
         if(this.environment.get('debug')) this.transmitter.emit("log.cellpack.i18n",`Translation of: "${text}" with: ${subs}`)
-        return this.i18n.__(text,subs)
+        try {
+            return this.i18n.__(text,subs)
+        } catch(err){
+            if(this.environment.get('debug')){
+                this.transmitter.emit("log.cellpack.i18n",`Translation Error: "${err}" in: ${text} with: ${subs}`)
+                return `<div class="microb-error" style="color:red; background-color:#fee; border:solid 1px #f00; border-radius:3px; padding:10px; font-size:1em; font-family:Monospace"><strong>Translation error: </strong>${err}<br><strong>In: </strong>${text}<br><strong>With: </strong>${subs}</div>`
+            }
+        }
     }
 
     request(connection: Connection){
