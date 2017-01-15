@@ -35,12 +35,12 @@ export default class CellpackI18n extends Cellpack {
     }
 
     translations(text: string, subs?: any){
-        if(this.config) this.transmitter.emit("log.cellpack.i18n",`Translation of: "${text}" with: ${subs}`)
+        if(this.debug) this.transmitter.emit("log.cellpack.i18n",`Translation of: "${text}" with: ${subs}`)
         try {
             return this.i18n.__(text,subs)
         } catch(err){
             this.transmitter.emit("log.cellpack.i18n",`Translation Error: "${err}" in: ${text} with: ${subs}`)
-            if(this.config){
+            if(this.debug){
                 return `<div class="microb-error" style="color:red; background-color:#fee; border:solid 1px #f00; border-radius:3px; padding:10px; font-size:1em; font-family:Monospace"><strong>Translation error: </strong>${err}<br><strong>In: </strong>${text}<br><strong>With: </strong>${subs}</div>`
             }
         }
