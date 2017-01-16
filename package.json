@@ -12,8 +12,8 @@
     },
     "license": "GPL-3.0",
     "author": "scippio",
-    "main": "./lib/main.js",
-    "types": "./types/main.d.ts",
+    "main": "lib/main.js",
+    "types": "types/main.d.ts",
     "scripts": {
         "start": "gulp",
         "watch": "gulp watch",
