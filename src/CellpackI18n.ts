@@ -11,7 +11,7 @@ export default class CellpackI18n extends Cellpack {
     private debug: boolean
     // defaultLocale: string
 
-    init(){
+    init(): Promise<void> {
         // own config
         this.config = this.environment.get("cellpacks")["cellpack-i18n"]
         // debug
@@ -34,7 +34,7 @@ export default class CellpackI18n extends Cellpack {
         return Promise.resolve()
     }
 
-    translations(text: string, subs?: any){
+    translations(text: string, subs?: any): string {
         if(this.debug) this.transmitter.emit("log.cellpack.i18n",`Translation of: "${text}" with: ${subs}`)
         try {
             return this.i18n.__(text,subs)
@@ -44,9 +44,10 @@ export default class CellpackI18n extends Cellpack {
                 return `<div class="microb-error" style="color:red; background-color:#fee; border:solid 1px #f00; border-radius:3px; padding:10px; font-size:1em; font-family:Monospace"><strong>Translation error: </strong>${err}<br><strong>In: </strong>${text}<br><strong>With: </strong>${subs}</div>`
             }
         }
+        return ""
     }
 
-    request(connection: Connection){
+    request(connection: Connection): Promise<boolean> {
         if(connection.request.attributes.has("locale")) this.i18n.setLocale(connection.request.attributes.get("locale"))
         if(connection.environment.has("cellpack.i18n.locale")) this.i18n.setLocale(connection.environment.get("cellpack.i18n.locale"))
         if(this.debug) this.transmitter.emit("log.cellpack.i18n",`Set Locale: ${this.i18n.getLocale()}`)
