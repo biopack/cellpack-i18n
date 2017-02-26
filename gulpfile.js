@@ -6,10 +6,11 @@ const Merge = require("merge2")
 let TsProject = GulpTypescript.createProject("tsconfig.json")
 
 Gulp.task("compile", () => {
-    let res = TsProject.src()
+    // let res = TsProject.src()
+    let res = Gulp.src("src/**/*.ts")
         .pipe(TsProject());
     return Merge([
-        res.js.pipe(Gulp.dest("lib")),
+        res.js.pipe(Gulp.dest("src")),
         res.dts.pipe(Gulp.dest("types"))
     ])
 })

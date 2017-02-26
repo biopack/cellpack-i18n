@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const appRoot = require("app-root-path");
 const Promise = require("bluebird");
 const I18n = require("i18n");
@@ -47,5 +48,4 @@ class CellpackI18n extends microb_1.Cellpack {
         return Promise.resolve(true);
     }
 }
-Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = CellpackI18n;
