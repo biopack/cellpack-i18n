@@ -102,12 +102,15 @@ export default class CellpackI18n extends Cellpack {
     }
 
     request(connection: Connection): Promise<boolean> {
-        connection.environment.add("template.filters", {
-            name: "trans",
-            // env: "cellpack.i18n",
-            class: connection.environment.get("cellpack.i18n"),
-            func: connection.environment.get("cellpack.i18n").translations
-        })
+        let i18nObject = connection.environment.get("cellpack.i18n")
+        if(i18nObject !== undefined){
+            connection.environment.add("template.filters", {
+                name: "trans",
+                // env: "cellpack.i18n",
+                class: connection.environment.get("cellpack.i18n"),
+                func: connection.environment.get("cellpack.i18n").translations
+            })
+        }
 
 
     //     let i18n: any = {}

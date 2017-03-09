@@ -59,11 +59,14 @@ class CellpackI18n extends microb_1.Cellpack {
         return this.transmitter;
     }
     request(connection) {
-        connection.environment.add("template.filters", {
-            name: "trans",
-            class: connection.environment.get("cellpack.i18n"),
-            func: connection.environment.get("cellpack.i18n").translations
-        });
+        let i18nObject = connection.environment.get("cellpack.i18n");
+        if (i18nObject !== undefined) {
+            connection.environment.add("template.filters", {
+                name: "trans",
+                class: connection.environment.get("cellpack.i18n"),
+                func: connection.environment.get("cellpack.i18n").translations
+            });
+        }
         return Promise.resolve(true);
     }
 }

@@ -1,6 +1,6 @@
 {
     "name": "cellpack-i18n",
-    "version": "1.0.0-alpha.9",
+    "version": "1.0.0-alpha.10",
     "description": "Cellpack module for Microb framework integrated i18n translation package",
     "keywords": [
         "Microb","mvc","framework","web","i18n","translation"
